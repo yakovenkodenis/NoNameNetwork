@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:index]
   before_action :set_user, only: [:show]
+  before_action :counts, only: [:index]
 
   def index
     case params[:people]
@@ -19,10 +20,15 @@ class UsersController < ApplicationController
     @post = Post.new
     @posts = @user.posts.order('created_at DESC')
     @activities = PublicActivity::Activity.where(owner_id: @user.id)
-                                          .order('created_at DESC')
+                  .order('created_at DESC')
   end
 
   private
+
+  def counts
+    @friend_count = current_user.active_friends.size
+    @pending_count = current_user.pending_friend_requests_to.map(&:friend).size
+  end
 
   def set_user
     @user = User.find_by(username: params[:id])

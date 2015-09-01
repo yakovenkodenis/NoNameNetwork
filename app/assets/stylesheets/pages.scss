@@ -1,4 +1,3 @@
-
 body {
     padding-top: 50px;
 }
@@ -8,4 +7,18 @@ body {
     z-index: 1;
 
     width: 200px;
+}
+
+.front-title {
+    margin-top: 50px;
+}
+
+.landing {
+    height: 100vh;
+
+    background: image-url('wallpaper.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+       -moz-background-size: cover;
+         -o-background-size: cover;
+            background-size: cover;
 }
